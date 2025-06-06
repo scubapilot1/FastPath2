@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastPath</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>FastPath</h1>
+        <p>Welcome, {{ current_user.username }}! <a href="{{ url_for('logout') }}">Logout</a></p>
+        <div class="input-group">
+            <input type="text" id="address" placeholder="Enter new address (e.g., 123 Main St, New York, NY)">
+            <select id="saved-addresses">
+                <option value="">Select saved address</option>
+                {% for location in saved_locations %}
+                    <option value="{{ location }}">{{ location }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addAddress()">Add Address</button>
+        </div>
+        <ul id="address-list"></ul>
+        <button onclick="optimizeRoute()">Optimize Route</button>
+        <div id="result"></div>
+        <div id="map"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
